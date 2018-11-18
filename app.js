@@ -1,6 +1,6 @@
 var canvas = document.querySelector('canvas')
 canvas.width = window.innerWidth
-canvas.height = window.innerHeight - 50
+canvas.height = window.innerHeight
 
 var ctx = canvas.getContext('2d')
 var gravityOn = true
@@ -27,10 +27,10 @@ gravityBtn.style.left = (window.innerWidth/2 - gravityBtn.offsetWidth/2) + 'px'
 
 
 const btnTitle = document.getElementById('btnTitle')
-btnTitle.innerHTML = 'Gravity ON'
+btnTitle.className = 'btnTitleOn'
 
-const indicator = document.getElementById('indicator')
-indicator.className = 'gravityOn'
+const power = document.getElementById('power')
+power.className = 'powerOn'
 
 const colors = ['#4deeea', '#74ee15', '#ffe700', '#f000ff', '#001eff', '#ff0303', '#8400ff', '#00fff6', '#0028ff', '#00ff28', '#ffa300', '#cf0060', '#ff00ff', '#13a8fe', '#4e87a4', '#b0d5ce', '#fff1e4', '#fa86ab', '#ee2889','#7b297d', '#e87888', '#eae8e5', '#b1185a','#c351a2', '#efa9df', '#f3cff1']
 
@@ -39,17 +39,19 @@ var energyLoss = 0.85
 
 
 function toggleGravity(){
-    if (gravityOn === true){
-        btnTitle.innerHTML = 'Gravity OFF'
+    if (gravityOn){
         gravityOn = false
-        indicator.className = 'gravityOff'
+        power.className = 'powerOff'
+        btnTitle.className = 'btnTitleOff'
+        gravityBtn.classList.add('buttonConatinerOff')
         for (var i = 0; i < ballArray.length; i++){
             ballArray[i].turnGravityOff()
         }
     } else {
-        btnTitle.innerHTML = 'Gravity ON'
         gravityOn = true
-        indicator.className = 'gravityOn'
+        power.className = 'powerOn'
+        btnTitle.className = 'btnTitleOn'
+        gravityBtn.classList.remove('buttonConatinerOff')
         for (var j = 0; j < ballArray.length; j++){
             ballArray[j].turnGravityOn()
         }
@@ -76,7 +78,7 @@ function Ball (x, y, dx, dy, radius, color, stroke){
         // ctx.stroke()
         // ctx.shadowBlur = 20
         // ctx.shadowColor = 'white'
-        // ctx.globalAlpha = 0.8
+        ctx.globalAlpha = 0.9
         ctx.closePath()
     }
 
