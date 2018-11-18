@@ -10,8 +10,8 @@ const maxDXgravityOff = 2
 const minDYgravityOff = 1
 const maxDYgravityOff = 3
 
-const minDXgravityOn = -2
-const maxDXgravityOn = 2
+const minDXgravityOn = -1
+const maxDXgravityOn = 1
 const minDYgravityOn = 1
 const maxDYgravityOn = 3
 
@@ -95,17 +95,21 @@ function Ball (x, y, dx, dy, radius, color, stroke){
             this.x += this.dx
 
         } else {
-            this.x += this.dx
-            this.y -= this.dy
 
             if (this.y - this.radius - 2 <= 0){
                 this.dy = 0
                 this.dx = 0
             }
 
-            if (this.x - this.dx - this.radius <= 0 || this.x + radius + this.dx >= canvas.width){
-                this.dx = 0
+            if (this.x - this.radius <= 0 || this.x + this.radius + this.dx >= canvas.width){
+                this.dx = -this.dx
+                this.x += this.dx
+                this.dx *= 0.6
+            } else {
+                this.x += this.dx
             }
+
+            this.y -= this.dy
         }
 
         this.draw()
