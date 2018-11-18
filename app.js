@@ -97,7 +97,7 @@ function Ball (x, y, dx, dy, radius, color, stroke){
 
             this.y += this.dy
             this.x += this.dx
-            // this.dx = this.dx * 0.99
+
         } else {
             this.x += this.dx
             this.y -= this.dy
@@ -124,14 +124,8 @@ function Ball (x, y, dx, dy, radius, color, stroke){
         this.dx = randomFloatFromRange(minDXgravityOn, maxDXgravityOn)
         this.dy = randomFloatFromRange(minDYgravityOn, maxDYgravityOn)
     }
-
 }
 
-// let ballArray = []
-
-// for (var i = 0; i < ballArray.length; i++){
-//     let ball = new Ball(x, y, 30, 'red')
-// }
 
 var ball
 var ballArray = []
@@ -147,9 +141,6 @@ function init(){
         ball = new Ball(x, y, dx, 2, radius, color, stroke)
         ballArray.push(ball)
     }
-
-    console.log(ballArray)
-
 }
 
 function animate(){
@@ -159,7 +150,6 @@ function animate(){
     for (var i = 0; i < ballArray.length; i++){
         ballArray[i].update()
     }
-
 }
 
 
@@ -178,7 +168,6 @@ function randomColor(colors) {
 function distance(x1, y1, x2, y2) {
     const xDist = x2 - x1
     const yDist = y2 - y1
-
     return Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2))
 }
 
