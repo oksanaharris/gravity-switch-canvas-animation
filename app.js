@@ -10,16 +10,15 @@ const maxDXgravityOff = 2
 const minDYgravityOff = 1
 const maxDYgravityOff = 3
 
-const minDXgravityOn = -2
-const maxDXgravityOn = 2
-const minDYgravityOn = 1
-const maxDYgravityOn = 3
+const minDXgravityOn = -150
+const maxDXgravityOn = 150
+const minDYgravityOn = 50
+const maxDYgravityOn = 100
 
 const minRadius = 10
 const maxRadius = 40
 
-const numCircles = 250
-
+const numCircles = 10
 
 const gravityBtn = document.getElementById('buttonContainer')
 gravityBtn.addEventListener('click', toggleGravity)
@@ -30,7 +29,7 @@ const power = document.getElementById('power')
 
 const colors = ['#4deeea', '#74ee15', '#ffe700', '#f000ff', '#001eff', '#ff0303', '#8400ff', '#00fff6', '#0028ff', '#00ff28', '#ffa300', '#cf0060', '#ff00ff', '#13a8fe', '#4e87a4', '#b0d5ce', '#fff1e4', '#fa86ab', '#ee2889','#7b297d', '#e87888', '#eae8e5', '#b1185a','#c351a2', '#efa9df', '#f3cff1']
 
-var gravity = 2
+var gravity = 3
 var energyLoss = 0.85
 
 
@@ -74,7 +73,7 @@ function Ball (x, y, dx, dy, radius, color, stroke){
         // ctx.stroke()
         // ctx.shadowBlur = 20
         // ctx.shadowColor = 'white'
-        ctx.globalAlpha = 0.9
+        // ctx.globalAlpha = 0.9
         ctx.closePath()
     }
 
@@ -82,7 +81,7 @@ function Ball (x, y, dx, dy, radius, color, stroke){
         if (gravityOn){
             if (this.y + this.radius + this.dy > canvas.height) {
                 this.dy = -this.dy * energyLoss
-                this.dx = this.dx * .99
+                this.dx = this.dx * .95
             } else {
                 this.dy += gravity
             }
