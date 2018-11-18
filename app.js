@@ -33,6 +33,14 @@ var gravity = 3
 var energyLoss = 0.85
 
 
+addEventListener('resize', () => {
+    canvas.width = innerWidth
+    canvas.height = innerHeight
+
+    init()
+})
+
+
 function toggleGravity(){
     if (gravityOn){
         gravityOn = false
@@ -125,6 +133,7 @@ function Ball (x, y, dx, dy, radius, color, stroke){
 var ball
 var ballArray
 
+
 function init(){
     gravityBtn.style.left = (window.innerWidth/2 - gravityBtn.offsetWidth/2) + 'px'
     btnTitle.className = 'btnTitleOn'
@@ -143,6 +152,7 @@ function init(){
     }
 }
 
+
 function animate(){
     requestAnimationFrame(animate)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -157,26 +167,22 @@ function randomIntFromRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+
 function randomFloatFromRange(min, max) {
     return Math.random() * (max - min + 1) + min
 }
 
+
 function randomColor(colors) {
     return colors[Math.floor(Math.random() * colors.length)]
 }
+
 
 function distance(x1, y1, x2, y2) {
     const xDist = x2 - x1
     const yDist = y2 - y1
     return Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2))
 }
-
-addEventListener('resize', () => {
-    canvas.width = innerWidth
-    canvas.height = innerHeight
-
-    init()
-})
 
 
 init()
