@@ -23,14 +23,10 @@ const numCircles = 250
 
 const gravityBtn = document.getElementById('buttonContainer')
 gravityBtn.addEventListener('click', toggleGravity)
-gravityBtn.style.left = (window.innerWidth/2 - gravityBtn.offsetWidth/2) + 'px'
-
 
 const btnTitle = document.getElementById('btnTitle')
-btnTitle.className = 'btnTitleOn'
 
 const power = document.getElementById('power')
-power.className = 'powerOn'
 
 const colors = ['#4deeea', '#74ee15', '#ffe700', '#f000ff', '#001eff', '#ff0303', '#8400ff', '#00fff6', '#0028ff', '#00ff28', '#ffa300', '#cf0060', '#ff00ff', '#13a8fe', '#4e87a4', '#b0d5ce', '#fff1e4', '#fa86ab', '#ee2889','#7b297d', '#e87888', '#eae8e5', '#b1185a','#c351a2', '#efa9df', '#f3cff1']
 
@@ -128,9 +124,14 @@ function Ball (x, y, dx, dy, radius, color, stroke){
 
 
 var ball
-var ballArray = []
+var ballArray
 
 function init(){
+    gravityBtn.style.left = (window.innerWidth/2 - gravityBtn.offsetWidth/2) + 'px'
+    btnTitle.className = 'btnTitleOn'
+    power.className = 'powerOn'
+    gravityOn = true
+    ballArray = []
     for (var i = 0; i < numCircles; i++){
         var radius = randomIntFromRange(minRadius, maxRadius)
         var x = randomIntFromRange(radius, canvas.width - radius)
@@ -170,6 +171,13 @@ function distance(x1, y1, x2, y2) {
     const yDist = y2 - y1
     return Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2))
 }
+
+addEventListener('resize', () => {
+    canvas.width = innerWidth
+    canvas.height = innerHeight
+
+    init()
+})
 
 
 init()
